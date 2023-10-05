@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fletzikore - By Adrian</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Dark theme */
+        body {
+            background-color: #222;
+            color: #fff;
+        }
+        p{color: #333; font-weight: bold;}
+        .form-group label {
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #3C096C;
+            border-color: #3C096C;
+        }
+        h4{color: #222;}
+        .btn-primary:hover {
+            background-color: #240046;
+            border-color: #240046 ;
+        }
+        .btn-success {
+            background-color: #9D4EDD;
+            border-color: #9D4EDD;
+        }
+        .btn-success:hover {
+            background-color: #7B2CBF;
+            border-color: #7B2CBF;
+        }
+        .btn-info {
+            background-color: #9D4EDD;
+            border-color: #9D4EDD;
+            margin: 0
+        }
+        .btn-info:hover {
+            background-color: #7B2CBF;
+            border-color: #7B2CBF;
+        }
+        .btn-danger {
+            background-color: #240046;
+            border-color: #240046;
+        }
+        .btn-danger:hover {
+            background-color: #3C096C;
+            border-color: #3C096C;
+        }
+        body{
+            /* background: rgb(2,0,36);
+            background: -moz-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(29,29,29,1) 47%, rgba(74,27,27,1) 100%);
+            background: -webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(29,29,29,1) 47%, rgba(74,27,27,1) 100%);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(29,29,29,1) 47%, rgba(74,27,27,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#4a1b1b",GradientType=1);
+            background:
+                  radial-gradient(32px at 100% 0, #3d0202 6.25%, #000000 6.3% 18.75%, #3d0202 18.8% 31.25%, #000000 31.3% 43.75%, #3d0202 43.8% 56.25%, #000000 56.3% 68.75%, #0000 0),
+                  radial-gradient(32px at 0 0, #3d0202 6.25%, #000000 6.3% 18.75%, #3d0202 18.8% 31.25%, #000000 31.3% 43.75%, #3d0202 43.8% 56.25%, #000000 56.3% 68.75%, #0000 0),
+                  radial-gradient(32px at 0 100%, #3d0202 6.25%, #000000 6.3% 18.75%, #3d0202 18.8% 31.25%, #000000 31.3% 43.75%, #3d0202 43.8% 56.25%, #000000 56.3% 68.75%, #0000 0),
+                  radial-gradient(32px at 100% 100%, #3d0202 6.25%, #000000 6.3% 18.75%, #3d0202 18.8% 31.25%, #000000 31.3% 43.75%, #3d0202 43.8% 56.25%, #000000 56.3% 68.75%, #0000 0) #3d0202;
+            background-size: 32px 32px; */
+            background-color: #202225;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        b, strong {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+        }
+
+        .form-group label {
+            color: #fff;
+            font-weight: bold;
+        }
+        .btn-link {
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    background-color: #240046240046;
+    border-color: #240046;
+    text-decoration: none;
+    background-color: #240046;
+}
+.btn-link:hover {
+    color: #3C096C;
+    text-decoration: none;
+    color: #fff;
+    background-color: #3C096C;
+}
+.btn{padding: 10px;
+    margin: 0px;    border-radius: 1px;
+}
+    </style>
+</head>
+<body>
+    <div id="app" class="container mt-5">
+        <h1 class="mb-4">Fletzikore - By Adrian</h1>
+        <h5 class="mb-7">Sort your music sheets</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <form>
+                    <div class="form-group">
+                        <label for="songNameInput">Song Name</label>
+                        <input type="text" class="form-control" id="songNameInput" v-model="newSong.songName" placeholder="Song Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="artistInput">Artist</label>
+                        <input type="text" class="form-control" id="artistInput" v-model="newSong.artist" placeholder="Artist">
+                    </div>
+                    <div class="form-group">
+                        <label for="bpmInput">BPM</label>
+                        <input type="number" class="form-control" id="bpmInput" v-model="newSong.bpm" placeholder="BPM">
+                    </div>
+                    <div class="form-group">
+                        <label for="genreInput">Genre</label>
+                        <input type="text" class="form-control" id="genreInput" v-model="newSong.genre" placeholder="Genre">
+                    </div>
+                    <div class="form-group">
+                        <label for="songLengthInput">Song Length</label>
+                        <input type="text" class="form-control" id="songLengthInput" v-model="newSong.songLength" placeholder="Song Length">
+                    </div>
+                    <div class="form-group">
+                        <label for="songKeyInput">Song Key</label>
+                        <input type="text" class="form-control" id="songKeyInput" v-model="newSong.songKey" placeholder="Song Key">
+                    </div>
+                    <div class="form-group">
+                        <label for="notesInput">Notes</label>
+                        <input type="text" class="form-control" id="notesInput" v-model="newSong.notes" placeholder="Notes">
+                    </div>
+                    <div class="form-group">
+                        <label for="tempoInput">Tempo</label>
+                        <input type="text" class="form-control" id="tempoInput" v-model="newSong.tempo" placeholder="Tempo">
+                    </div>
+                    <div class="form-group">
+                        <label for="fileInput">Upload Lyrics</label>
+                        <input type="file" class="form-control-file" id="fileInput" accept=".txt" style="display: none;">
+                        <label class="btn btn-primary" for="fileInput">Select File</label>
+                    </div>
+                    <button type="button" class="btn btn-primary" @click="addSong">Add</button>
+                    <button type="button" class="btn btn-success" @click="exportData">Export Data</button>
+                    <input type="file" id="importFileInput" style="display: none;" @change="importData">
+                    <label class="btn btn-info" for="importFileInput">Import Data</label>
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#filterSection">Filters</button>
+
+                </form>
+            </div>
+            <div class="col-md-6">
+                <!-- Filter Section -->
+                <div id="filterSection" class="collapse">
+    <!-- Song Name Filter -->
+    <div class="form-group">
+        <label for="searchInput">Search by Song Name</label>
+        <input type="text" class="form-control mb-2" id="searchInput" v-model="searchQuery" placeholder="Search by Song Name">
+    </div>
+
+    <!-- BPM Filter -->
+    <div class="form-group">
+        <label for="bpmFilter">Filter by BPM</label>
+        <input type="text" class="form-control mb-2" id="bpmFilter" v-model="bpmFilter" placeholder="BPM Filter">
+    </div>
+
+    <!-- Genre Filter -->
+    <div class="form-group">
+        <label for="genreFilter">Filter by Genre</label>
+        <input type="text" class="form-control mb-2" id="genreFilter" v-model="genreFilter" placeholder="Genre Filter">
+    </div>
+
+    <!-- Song Key Filter -->
+    <div class="form-group">
+        <label for="songKeyFilter">Filter by Song Key</label>
+        <input type="text" class="form-control mb-2" id="songKeyFilter" v-model="songKeyFilter" placeholder="Song Key Filter">
+    </div>
+
+    <!-- Tempo Filter -->
+    <div class="form-group">
+        <label for="tempoFilter">Filter by Tempo</label>
+        <input type="text" class="form-control mb-2" id="tempoFilter" v-model="tempoFilter" placeholder="Tempo Filter">
+    </div>
+</div>
+
+
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="(song, index) in filteredSongs" :key="index">
+                        <h4 class="mb-2">{{ song.songName }}</h4>
+                        <p><strong>Artist:</strong> {{ song.artist }}</p>
+                        <p><strong>BPM:</strong> {{ song.bpm }}</p>
+                        <p><strong>Genre:</strong> {{ song.genre }}</p>
+                        <p><strong>Song Length:</strong> {{ song.songLength }}</p>
+                        <p><strong>Song Key:</strong> {{ song.songKey }}</p>
+                        <p><strong>Notes:</strong> {{ song.notes }}</p>
+                        <p><strong>Tempo:</strong> {{ song.tempo }}</p>
+                        <p>{{ song.lyrics }}</p>
+                        <button type="button" class="btn btn-danger btn-sm" @click="removeSong(index)">Remove</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap and Vue.js scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                songs: [],
+                newSong: {
+                    songName: '',
+                    artist: '',
+                    bpm: '',
+                    genre: '',
+                    songLength: '',
+                    songKey: '',
+                    notes: '',
+                    tempo: ''
+                },
+                searchQuery: '',
+                bpmFilter: '',
+                genreFilter: '',
+                songKeyFilter: '',
+                tempoFilter: ''
+            },
+            computed: {
+                filteredSongs: function () {
+                    return this.songs.filter(song => {
+                        const songNameMatch = this.searchQuery ? song.songName.toLowerCase().includes(this.searchQuery.toLowerCase()) : true;
+                        const bpmMatch = this.bpmFilter ? song.bpm.toString().includes(this.bpmFilter) : true;
+                        const genreMatch = this.genreFilter ? song.genre.toLowerCase().includes(this.genreFilter.toLowerCase()) : true;
+                        const songKeyMatch = this.songKeyFilter ? song.songKey.toLowerCase().includes(this.songKeyFilter.toLowerCase()) : true;
+                        const tempoMatch = this.tempoFilter ? song.tempo.toLowerCase().includes(this.tempoFilter.toLowerCase()) : true;
+
+                        return songNameMatch && bpmMatch && genreMatch && songKeyMatch && tempoMatch;
+                    });
+                }
+            },
+            methods: {
+                addSong: function () {
+                    const fileInput = document.getElementById("fileInput");
+                    const lyricsFile = fileInput.files[0];
+
+                    if (this.newSong.songName !== "") {
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = (event) => {
+                            const lyricsText = event.target.result;
+                            const song = {
+                                songName: this.newSong.songName,
+                                artist: this.newSong.artist,
+                                bpm: this.newSong.bpm,
+                                genre: this.newSong.genre,
+                                songLength: this.newSong.songLength,
+                                songKey: this.newSong.songKey,
+                                notes: this.newSong.notes,
+                                tempo: this.newSong.tempo,
+                                lyrics: lyricsText
+                            };
+
+                            this.songs.push(song);
+                            this.saveDataToLocal();
+                            this.newSong.songName = '';
+                            this.newSong.artist = '';
+                            this.newSong.bpm = '';
+                            this.newSong.genre = '';
+                            this.newSong.songLength = '';
+                            this.newSong.songKey = '';
+                            this.newSong.notes = '';
+                            this.newSong.tempo = '';
+                            fileInput.value = '';
+                        };
+
+                        if (lyricsFile) {
+                            fileReader.readAsText(lyricsFile);
+                        } else {
+                            alert("Please select a text file for lyrics.");
+                        }
+                    }
+                },
+                removeSong: function (index) {
+                    this.songs.splice(index, 1);
+                    this.saveDataToLocal();
+                },
+                saveDataToLocal: function () {
+                    localStorage.setItem("setlist", JSON.stringify(this.songs));
+                },
+                exportData: function () {
+                    const jsonData = JSON.stringify(this.songs);
+                    const blob = new Blob([jsonData], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = 'setlist.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    URL.revokeObjectURL(url);
+                },
+                importData: function () {
+                    const fileInput = document.getElementById('importFileInput');
+                    const importFile = fileInput.files[0];
+
+                    if (importFile) {
+                        const fileReader = new FileReader();
+
+                        fileReader.onload = (event) => {
+                            const importedData = JSON.parse(event.target.result);
+                            this.songs = importedData;
+                            this.saveDataToLocal();
+                        };
+
+                        fileReader.readAsText(importFile);
+                    } else {
+                        alert("Please select a JSON file to import.");
+                    }
+                },
+            },
+            mounted: function () {
+                const storedSetlist = localStorage.getItem("setlist");
+                if (storedSetlist) {
+                    this.songs = JSON.parse(storedSetlist);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
